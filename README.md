@@ -4,7 +4,7 @@ Aplicativo móvel que ajuda a encontrar o ponto de coleta de reciclagem mais pr�
 
 Projeto da disciplina **CCP150 – Desenvolvimento de Aplicativos Móveis**, feito em conjunto com a disciplina de **Engenharia de Software** (CCG110 – Documento Integrado), 2º semestre de 2026.
 
-> **Status:** projeto em início. Por enquanto existem apenas o projeto Expo configurado e a estrutura de pastas. As funcionalidades abaixo estão planejadas e serão marcadas conforme forem implementadas.
+> **Status:** projeto em início. Já existem o projeto Expo, o tema visual, os componentes base (botão, cartão e estrutura de tela) e a navegação em abas e pilhas com as 8 telas ainda vazias, só com texto e botões para a próxima tela. Ainda não há dados, GPS, mapa nem Firebase. As funcionalidades abaixo estão planejadas e serão marcadas conforme forem implementadas.
 
 **Equipe**
 
@@ -47,7 +47,7 @@ Requisitos não funcionais principais: a localização do usuário **nunca é ar
 | Tecnologia | Uso | Situação |
 |---|---|---|
 | React Native + Expo (SDK 58) | Base do aplicativo, em JavaScript | Em uso |
-| React Navigation | Navegação entre as telas | Planejado |
+| React Navigation | Navegação entre as telas (abas e pilhas) | Em uso |
 | Firebase (Authentication e Firestore) | Login dos parceiros e banco de dados com CRUD | Planejado |
 | expo-location | Leitura do GPS (sensor do aparelho) | Planejado |
 | OpenStreetMap (mapa, Nominatim e OSRM) | Mapa, busca de endereço e rota | Planejado |
@@ -102,11 +102,12 @@ A organização segue os documentos de Engenharia de Software (diagrama de class
 
 **Próximos passos**
 
-1. Configurar a navegação e criar as telas.
+1. Implementar o cálculo de distância (Haversine) e as regras de negócio, com testes.
 2. Criar o projeto no Firebase e implementar o CRUD de pontos.
-3. Implementar a busca por GPS, o cálculo de distância e a busca por endereço.
-4. Exibir o mapa e a rota.
-5. Escolher as imagens (ícones por tipo de material) e refinar a interface.
+3. Preencher as telas com dados: Estado e cidade, lista e detalhes.
+4. Implementar a busca por GPS e por endereço.
+5. Exibir o mapa e a rota.
+6. Escolher as imagens (ícones por tipo de material) e refinar a interface.
 
 ## Uso de inteligência artificial
 
@@ -114,6 +115,7 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 
 - criar e configurar o projeto Expo inicial;
 - propor a estrutura de pastas;
-- redigir o rascunho deste README.
+- redigir o rascunho deste README;
+- escrever o tema, os componentes base, as telas vazias e a navegação, a partir das decisões do grupo e da documentação oficial do React Navigation.
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
