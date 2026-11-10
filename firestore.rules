@@ -1,0 +1,59 @@
+rules_version = '2';
+
+// Regras de segurança do Cloud Firestore do Eco Ponto.
+// - pontos: qualquer pessoa lê os pontos ativos (RN01); o parceiro também lê
+//   os próprios pontos inativos. Só o parceiro autenticado cria, edita e
+//   exclui, e só os próprios pontos (RN04, RNF06).
+// - parceiros: cada parceiro lê e altera apenas o próprio cadastro.
+// - Qualquer outra coleção fica fechada.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function autenticado() {
+      return request.auth != null;
+    }
+
+    function ehDono(dados) {
+      return autenticado() && dados.parceiroId == request.auth.uid;
+    }
+
+    // Formato mínimo de um ponto válido (RN02 e RN03). As validações
+    // completas ficam no app; aqui o banco recusa dados sem o essencial.
+    function pontoValido(p) {
+      return p.keys().hasOnly(['nome', 'telefone', 'situacao', 'parceiroId', 'uf', 'cidade',
+                               'endereco', 'latitude', 'longitude', 'materiais', 'horarios'])
+        && p.nome is string && p.nome.size() > 0
+        && p.telefone is string
+        && p.situacao in ['ativo', 'inativo']
+        && p.uf is string && p.uf.size() == 2
+        && p.cidade is string && p.cidade.size() > 0
+        && p.endereco is map
+        && p.latitude is number && p.latitude >= -90 && p.latitude <= 90
+        && p.longitude is number && p.longitude >= -180 && p.longitude <= 180
+        && p.materiais is list && p.materiais.size() > 0
+        && p.horarios is list && p.horarios.size() > 0;
+    }
+
+    match /pontos/{idPonto} {
+      allow read: if resource.data.situacao == 'ativo' || ehDono(resource.data);
+
+      // RF06: o ponto nasce ativo e ligado ao parceiro que está logado.
+      allow create: if ehDono(request.resource.data)
+        && request.resource.data.situacao == 'ativo'
+        && pontoValido(request.resource.data);
+
+      // RF09: só o dono edita, e o dono do ponto não pode ser trocado.
+      allow update: if ehDono(resource.data)
+        && request.resource.data.parceiroId == resource.data.parceiroId
+        && pontoValido(request.resource.data);
+
+      // RF10: só o dono exclui.
+      allow delete: if ehDono(resource.data);
+    }
+
+    match /parceiros/{idParceiro} {
+      allow read, create, update: if autenticado() && request.auth.uid == idParceiro;
+      allow delete: if false;
+    }
+  }
+}

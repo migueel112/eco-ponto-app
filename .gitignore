@@ -49,3 +49,7 @@ yarn-error.*
 
 # relatorio de cobertura dos testes
 coverage/
+
+# logs do Firebase CLI
+firebase-debug.log
+firestore-debug.log
