@@ -149,6 +149,7 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 - escrever o controlador do ponto de coleta (`src/controladores/ControladorPontoDeColeta.js`): detalhes, distância e rota, com o aviso de falta de internet, e os seus testes (CT08 e CT12);
 - escrever o controlador do cadastro (`src/controladores/ControladorCadastro.js`): login obrigatório, cadastrar, editar e excluir só os próprios pontos, e os seus testes (CT09, CT10, CT11, CT14 e CT15);
 - criar o banco Firestore e registrar o app pelo Firebase CLI (o login na conta Google e o aceite dos termos foram feitos pela equipe), escrever e publicar as regras de segurança (`firestore.rules`) e escrever a inicialização do Firebase (`src/servicos/firebase.js`), seguindo a documentação do Expo SDK 58;
-- escrever o repositório de pontos no Firestore (`src/servicos/repositorioPontos.js`), o serviço de login do parceiro (`src/servicos/autenticacao.js`), os seus testes e o script de pontos fictícios (`scripts/popular-banco.mjs`).
+- escrever o repositório de pontos no Firestore (`src/servicos/repositorioPontos.js`), o serviço de login do parceiro (`src/servicos/autenticacao.js`), os seus testes e o script de pontos fictícios (`scripts/popular-banco.mjs`);
+- escrever a montagem dos controladores com o Firebase (`src/montagem.js`) e o componente de feedback de carregando, erro e vazio (`src/componentes/EstadoCarregamento.js`), com testes da React Native Testing Library.
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
