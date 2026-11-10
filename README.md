@@ -56,9 +56,10 @@ Requisitos não funcionais principais: a localização do usuário **nunca é ar
 
 ## 3. Funcionalidades
 
-Nenhuma funcionalidade implementada ainda. Plano de telas:
+Funcionalidades já implementadas estão marcadas. Plano de telas:
 
-- [ ] **Consulta por região:** escolher Estado e cidade e ver a lista de pontos (RF01, RF04)
+- [x] **Consulta por região:** os Estados com pontos aparecem na tela inicial e, ao tocar, a tela seguinte mostra as cidades (RF01). Estado, cidade e ponto em até 3 toques (RNF01).
+- [ ] **Lista de pontos da cidade** (RF04)
 - [ ] **Tela inicial:** buscar o ponto mais próximo por GPS ou por endereço (RF02, RF03)
 - [ ] **Detalhes do ponto:** endereço, horário, materiais, distância e rota (RF05, RF07)
 - [ ] **Filtro por material** (RF08)
@@ -150,6 +151,7 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 - escrever o controlador do cadastro (`src/controladores/ControladorCadastro.js`): login obrigatório, cadastrar, editar e excluir só os próprios pontos, e os seus testes (CT09, CT10, CT11, CT14 e CT15);
 - criar o banco Firestore e registrar o app pelo Firebase CLI (o login na conta Google e o aceite dos termos foram feitos pela equipe), escrever e publicar as regras de segurança (`firestore.rules`) e escrever a inicialização do Firebase (`src/servicos/firebase.js`), seguindo a documentação do Expo SDK 58;
 - escrever o repositório de pontos no Firestore (`src/servicos/repositorioPontos.js`), o serviço de login do parceiro (`src/servicos/autenticacao.js`), os seus testes e o script de pontos fictícios (`scripts/popular-banco.mjs`);
-- escrever a montagem dos controladores com o Firebase (`src/montagem.js`) e o componente de feedback de carregando, erro e vazio (`src/componentes/EstadoCarregamento.js`), com testes da React Native Testing Library.
+- escrever a montagem dos controladores com o Firebase (`src/montagem.js`) e o componente de feedback de carregando, erro e vazio (`src/componentes/EstadoCarregamento.js`), com testes da React Native Testing Library;
+- escrever o gancho `useConsulta` (`src/ganchos/useConsulta.js`), o rótulo de acessibilidade do Botao e as telas TelaInicial (Estados) e TelaConsultaRegiao (cidades) com dados do Firestore, carregando, erro e vazio, e os seus testes. A decisão de mostrar os Estados já na tela inicial, para cumprir os 3 toques do RNF01, foi do grupo.
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
