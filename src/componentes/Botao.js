@@ -2,7 +2,15 @@ import { Pressable, StyleSheet, Text } from 'react-native';
 import { alturaToque, cores, espacamento, raio } from '../tema';
 
 // Botão do app. variante: 'primario' (preenchido) ou 'secundario' (só contorno).
-export default function Botao({ titulo, aoPressionar, variante = 'primario', desabilitado = false, estilo }) {
+// rotuloAcessivel: texto lido pelo TalkBack/VoiceOver; sem ele, lê o título.
+export default function Botao({
+  titulo,
+  aoPressionar,
+  variante = 'primario',
+  desabilitado = false,
+  estilo,
+  rotuloAcessivel,
+}) {
   const primario = variante === 'primario';
 
   return (
@@ -10,6 +18,7 @@ export default function Botao({ titulo, aoPressionar, variante = 'primario', des
       onPress={aoPressionar}
       disabled={desabilitado}
       accessibilityRole="button"
+      accessibilityLabel={rotuloAcessivel ?? titulo}
       accessibilityState={{ disabled: desabilitado }}
       style={({ pressed }) => [
         styles.base,
