@@ -1,0 +1,156 @@
+{
+  "parceiro": {
+    "razaoSocial": "Parceiro de Teste Eco Ponto",
+    "cnpj": "00000000000000",
+    "email": "parceiro.teste@exemplo.com",
+    "telefone": "1130000000"
+  },
+  "pontos": [
+    {
+      "nome": "Ecoponto Teste Sé",
+      "telefone": "1130001001",
+      "uf": "SP",
+      "cidade": "São Paulo",
+      "endereco": { "logradouro": "Praça da Sé", "numero": "100", "bairro": "Sé", "cep": "01001000" },
+      "latitude": -23.5503,
+      "longitude": -46.634,
+      "materiais": ["papel", "plástico", "metal"],
+      "horarios": [
+        { "diaDaSemana": 1, "horaAbertura": "08:00", "horaFechamento": "17:00" },
+        { "diaDaSemana": 2, "horaAbertura": "08:00", "horaFechamento": "17:00" },
+        { "diaDaSemana": 3, "horaAbertura": "08:00", "horaFechamento": "17:00" },
+        { "diaDaSemana": 4, "horaAbertura": "08:00", "horaFechamento": "17:00" },
+        { "diaDaSemana": 5, "horaAbertura": "08:00", "horaFechamento": "17:00" }
+      ]
+    },
+    {
+      "nome": "Ecoponto Teste Paulista",
+      "telefone": "1130001002",
+      "uf": "SP",
+      "cidade": "São Paulo",
+      "endereco": { "logradouro": "Avenida Paulista", "numero": "1578", "bairro": "Bela Vista", "cep": "01310200" },
+      "latitude": -23.5614,
+      "longitude": -46.6559,
+      "materiais": ["papel", "vidro", "eletrônico"],
+      "horarios": [
+        { "diaDaSemana": 1, "horaAbertura": "09:00", "horaFechamento": "18:00" },
+        { "diaDaSemana": 3, "horaAbertura": "09:00", "horaFechamento": "18:00" },
+        { "diaDaSemana": 5, "horaAbertura": "09:00", "horaFechamento": "18:00" },
+        { "diaDaSemana": 6, "horaAbertura": "09:00", "horaFechamento": "13:00" }
+      ]
+    },
+    {
+      "nome": "Ecoponto Teste Ibirapuera",
+      "telefone": "1130001003",
+      "uf": "SP",
+      "cidade": "São Paulo",
+      "endereco": { "logradouro": "Avenida Pedro Álvares Cabral", "numero": "1", "bairro": "Vila Mariana", "cep": "04094050" },
+      "latitude": -23.5874,
+      "longitude": -46.6576,
+      "materiais": ["plástico", "vidro", "metal"],
+      "horarios": [
+        { "diaDaSemana": 0, "horaAbertura": "07:00", "horaFechamento": "19:00" },
+        { "diaDaSemana": 6, "horaAbertura": "07:00", "horaFechamento": "19:00" }
+      ]
+    },
+    {
+      "nome": "Ecoponto Teste Pinheiros",
+      "telefone": "11988887777",
+      "uf": "SP",
+      "cidade": "São Paulo",
+      "endereco": { "logradouro": "Rua dos Pinheiros", "numero": "500", "bairro": "Pinheiros", "cep": "05422001" },
+      "latitude": -23.5667,
+      "longitude": -46.6847,
+      "materiais": ["eletrônico"],
+      "horarios": [
+        { "diaDaSemana": 2, "horaAbertura": "10:00", "horaFechamento": "16:00" },
+        { "diaDaSemana": 4, "horaAbertura": "10:00", "horaFechamento": "16:00" }
+      ]
+    },
+    {
+      "nome": "Ecoponto Teste Desativado",
+      "telefone": "1130001005",
+      "uf": "SP",
+      "cidade": "São Paulo",
+      "endereco": { "logradouro": "Rua Augusta", "numero": "900", "bairro": "Consolação", "cep": "01304001" },
+      "latitude": -23.5537,
+      "longitude": -46.6544,
+      "materiais": ["papel"],
+      "horarios": [{ "diaDaSemana": 1, "horaAbertura": "08:00", "horaFechamento": "12:00" }],
+      "situacaoFinal": "inativo"
+    },
+    {
+      "nome": "Ecoponto Teste São Bernardo",
+      "telefone": "1143001001",
+      "uf": "SP",
+      "cidade": "São Bernardo do Campo",
+      "endereco": { "logradouro": "Avenida Humberto de Alencar Castelo Branco", "numero": "3972", "bairro": "Assunção", "cep": "09850901" },
+      "latitude": -23.7245,
+      "longitude": -46.5795,
+      "materiais": ["papel", "plástico", "vidro", "metal", "eletrônico"],
+      "horarios": [
+        { "diaDaSemana": 1, "horaAbertura": "07:00", "horaFechamento": "22:00" },
+        { "diaDaSemana": 2, "horaAbertura": "07:00", "horaFechamento": "22:00" },
+        { "diaDaSemana": 3, "horaAbertura": "07:00", "horaFechamento": "22:00" },
+        { "diaDaSemana": 4, "horaAbertura": "07:00", "horaFechamento": "22:00" },
+        { "diaDaSemana": 5, "horaAbertura": "07:00", "horaFechamento": "22:00" }
+      ]
+    },
+    {
+      "nome": "Ecoponto Teste Santos",
+      "telefone": "1332001001",
+      "uf": "SP",
+      "cidade": "Santos",
+      "endereco": { "logradouro": "Avenida Bartolomeu de Gusmão", "numero": "100", "bairro": "Aparecida", "cep": "11030500" },
+      "latitude": -23.9861,
+      "longitude": -46.3088,
+      "materiais": ["plástico", "metal"],
+      "horarios": [
+        { "diaDaSemana": 6, "horaAbertura": "08:00", "horaFechamento": "14:00" },
+        { "diaDaSemana": 0, "horaAbertura": "08:00", "horaFechamento": "14:00" }
+      ]
+    },
+    {
+      "nome": "Ecoponto Teste Campinas",
+      "telefone": "1932001001",
+      "uf": "SP",
+      "cidade": "Campinas",
+      "endereco": { "logradouro": "Avenida Francisco Glicério", "numero": "1000", "bairro": "Centro", "cep": "13012000" },
+      "latitude": -22.9056,
+      "longitude": -47.0608,
+      "materiais": ["papel", "vidro"],
+      "horarios": [
+        { "diaDaSemana": 1, "horaAbertura": "08:00", "horaFechamento": "17:00" },
+        { "diaDaSemana": 4, "horaAbertura": "08:00", "horaFechamento": "17:00" }
+      ]
+    },
+    {
+      "nome": "Ecoponto Teste Copacabana",
+      "telefone": "2130001001",
+      "uf": "RJ",
+      "cidade": "Rio de Janeiro",
+      "endereco": { "logradouro": "Avenida Atlântica", "numero": "1702", "bairro": "Copacabana", "cep": "22021001" },
+      "latitude": -22.9711,
+      "longitude": -43.1822,
+      "materiais": ["plástico", "vidro", "metal"],
+      "horarios": [
+        { "diaDaSemana": 2, "horaAbertura": "08:00", "horaFechamento": "18:00" },
+        { "diaDaSemana": 5, "horaAbertura": "08:00", "horaFechamento": "18:00" }
+      ]
+    },
+    {
+      "nome": "Ecoponto Teste Centro do Rio",
+      "telefone": "2130001002",
+      "uf": "RJ",
+      "cidade": "Rio de Janeiro",
+      "endereco": { "logradouro": "Rua Primeiro de Março", "numero": "66", "bairro": "Centro", "cep": "20010000" },
+      "latitude": -22.9028,
+      "longitude": -43.1754,
+      "materiais": ["papel", "eletrônico"],
+      "horarios": [
+        { "diaDaSemana": 1, "horaAbertura": "09:00", "horaFechamento": "17:00" },
+        { "diaDaSemana": 3, "horaAbertura": "09:00", "horaFechamento": "17:00" }
+      ]
+    }
+  ]
+}

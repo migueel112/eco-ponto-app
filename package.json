@@ -25,7 +25,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "popular-banco": "node scripts/popular-banco.mjs"
   },
   "private": true,
   "jest": {
