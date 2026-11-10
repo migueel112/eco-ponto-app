@@ -19,7 +19,11 @@ export default function PilhaBusca() {
       }}
     >
       <Pilha.Screen name="Inicial" component={TelaInicial} options={{ title: 'Eco Ponto' }} />
-      <Pilha.Screen name="ConsultaRegiao" component={TelaConsultaRegiao} options={{ title: 'Estado e cidade' }} />
+      <Pilha.Screen
+        name="ConsultaRegiao"
+        component={TelaConsultaRegiao}
+        options={({ route }) => ({ title: route.params?.nomeEstado ?? 'Cidades' })}
+      />
       <Pilha.Screen name="ListaPontos" component={TelaListaPontos} options={{ title: 'Pontos de coleta' }} />
       <Pilha.Screen name="Detalhes" component={TelaDetalhes} options={{ title: 'Detalhes do ponto' }} />
       <Pilha.Screen name="Rota" component={TelaRota} options={{ title: 'Rota' }} />
