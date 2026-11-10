@@ -4,7 +4,7 @@ Aplicativo móvel que ajuda a encontrar o ponto de coleta de reciclagem mais pr�
 
 Projeto da disciplina **CCP150 – Desenvolvimento de Aplicativos Móveis**, feito em conjunto com a disciplina de **Engenharia de Software** (CCG110 – Documento Integrado), 2º semestre de 2026.
 
-> **Status:** projeto em início. Já existem o projeto Expo, o tema visual, os componentes base (botão, cartão e estrutura de tela) e a navegação em abas e pilhas com as 8 telas ainda vazias, só com texto e botões para a próxima tela. Ainda não há dados, GPS, mapa nem Firebase. As funcionalidades abaixo estão planejadas e serão marcadas conforme forem implementadas.
+> **Status:** projeto em início. Já existem o projeto Expo, o tema visual, os componentes base (botão, cartão e estrutura de tela) e a navegação em abas e pilhas com as 8 telas ainda vazias, só com texto e botões para a próxima tela. O domínio começou a ser escrito com testes automatizados (Jest): o cálculo de distância por Haversine já está pronto. Ainda não há dados, GPS, mapa nem Firebase. As funcionalidades abaixo estão planejadas e serão marcadas conforme forem implementadas.
 
 **Equipe**
 
@@ -52,6 +52,7 @@ Requisitos não funcionais principais: a localização do usuário **nunca é ar
 | expo-location | Leitura do GPS (sensor do aparelho) | Planejado |
 | OpenStreetMap (mapa, Nominatim e OSRM) | Mapa, busca de endereço e rota | Planejado |
 | Vibração (React Native) | Retorno tátil ao usuário (atuador) | Planejado |
+| Jest (preset jest-expo) | Testes automatizados do domínio e dos controladores | Em uso |
 
 ## 3. Funcionalidades
 
@@ -82,6 +83,13 @@ npx expo start
 
 Abra o **Expo Go** no celular e leia o QR code que aparece no terminal (celular e computador na mesma rede Wi-Fi).
 
+Para rodar os testes automatizados:
+
+```bash
+npm test                # executa os testes
+npm run test:coverage   # executa os testes e gera o relatório de cobertura
+```
+
 ## 6. Aprendizados e Próximos Passos
 
 **Estrutura do projeto**
@@ -102,7 +110,7 @@ A organização segue os documentos de Engenharia de Software (diagrama de class
 
 **Próximos passos**
 
-1. Implementar o cálculo de distância (Haversine) e as regras de negócio, com testes.
+1. Implementar as regras de negócio com testes (a distância por Haversine já está pronta e testada).
 2. Criar o projeto no Firebase e implementar o CRUD de pontos.
 3. Preencher as telas com dados: Estado e cidade, lista e detalhes.
 4. Implementar a busca por GPS e por endereço.
@@ -116,6 +124,8 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 - criar e configurar o projeto Expo inicial;
 - propor a estrutura de pastas;
 - redigir o rascunho deste README;
-- escrever o tema, os componentes base, as telas vazias e a navegação, a partir das decisões do grupo e da documentação oficial do React Navigation.
+- escrever o tema, os componentes base, as telas vazias e a navegação, a partir das decisões do grupo e da documentação oficial do React Navigation;
+- configurar o Jest com o preset jest-expo, seguindo a documentação de testes do Expo SDK 58;
+- escrever o cálculo de distância por Haversine (`src/dominio/distancia.js`) e os seus testes (caso de teste CT04).
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
