@@ -13,7 +13,10 @@ import { localizacaoValida } from '../dominio/distancia';
 import { estaAtivo, estaAberto } from '../dominio/pontoDeColeta';
 import { distanciaAtePonto } from '../dominio/ordenacao';
 
-export const ERRO_SEM_CONEXAO = 'sem-conexao';
+import { ERRO_SEM_CONEXAO } from '../dominio/erros';
+
+// Reexportado para quem já importava daqui.
+export { ERRO_SEM_CONEXAO };
 
 export const MENSAGENS_PONTO = {
   naoEncontrado: 'Ponto de coleta não encontrado',
