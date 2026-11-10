@@ -43,6 +43,10 @@
         "lines": 95,
         "statements": 95
       }
-    }
+    },
+    "setupFilesAfterEnv": [
+      "<rootDir>/jest.setup.js"
+    ],
+    "testTimeout": 20000
   }
 }
