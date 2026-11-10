@@ -4,7 +4,7 @@ Aplicativo móvel que ajuda a encontrar o ponto de coleta de reciclagem mais pr�
 
 Projeto da disciplina **CCP150 – Desenvolvimento de Aplicativos Móveis**, feito em conjunto com a disciplina de **Engenharia de Software** (CCG110 – Documento Integrado), 2º semestre de 2026.
 
-> **Status:** projeto em início. Já existem o projeto Expo, o tema visual, os componentes base (botão, cartão e estrutura de tela) e a navegação em abas e pilhas com as 8 telas ainda vazias, só com texto e botões para a próxima tela. O domínio começou a ser escrito com testes automatizados (Jest): o cálculo de distância por Haversine, a verificação de "aberto agora" pelo horário de funcionamento, a regra de só mostrar pontos ativos, o filtro por materiais, a ordenação da lista e o cálculo do ponto mais próximo já estão prontos. Ainda não há dados, GPS, mapa nem Firebase. As funcionalidades abaixo estão planejadas e serão marcadas conforme forem implementadas.
+> **Status:** projeto em início. Já existem o projeto Expo, o tema visual, os componentes base (botão, cartão e estrutura de tela) e a navegação em abas e pilhas com as 8 telas ainda vazias, só com texto e botões para a próxima tela. O domínio começou a ser escrito com testes automatizados (Jest): o cálculo de distância por Haversine, a verificação de "aberto agora" pelo horário de funcionamento, a regra de só mostrar pontos ativos, o filtro por materiais, a ordenação da lista, o cálculo do ponto mais próximo, a lista de Estados e as validações do cadastro de ponto já estão prontos. Ainda não há dados, GPS, mapa nem Firebase. As funcionalidades abaixo estão planejadas e serão marcadas conforme forem implementadas.
 
 **Equipe**
 
@@ -110,7 +110,7 @@ A organização segue os documentos de Engenharia de Software (diagrama de class
 
 **Próximos passos**
 
-1. Implementar as regras de negócio com testes (já estão prontos e testados: distância por Haversine, "aberto agora", só pontos ativos, filtro por materiais, ordenação e ponto mais próximo).
+1. Implementar os controladores com testes (as regras do domínio já estão prontas e testadas: distância por Haversine, "aberto agora", só pontos ativos, filtro por materiais, ordenação, ponto mais próximo e validações do cadastro).
 2. Criar o projeto no Firebase e implementar o CRUD de pontos.
 3. Preencher as telas com dados: Estado e cidade, lista e detalhes.
 4. Implementar a busca por GPS e por endereço.
@@ -129,6 +129,7 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 - escrever o cálculo de distância por Haversine (`src/dominio/distancia.js`) e os seus testes (caso de teste CT04);
 - escrever as regras do horário de funcionamento e o `estaAberto` do ponto de coleta (`src/dominio/horario.js` e `src/dominio/pontoDeColeta.js`), com testes;
 - escrever a regra de só listar pontos ativos (RN01) e o filtro por materiais (`src/dominio/materiais.js`, RF08), com testes (CT13);
-- escrever a ordenação da lista por distância ou por nome (`src/dominio/ordenacao.js`, RF04) e a Busca com o cálculo do ponto mais próximo e o desempate pelo ponto aberto (`src/dominio/busca.js`, RN06), com testes.
+- escrever a ordenação da lista por distância ou por nome (`src/dominio/ordenacao.js`, RF04) e a Busca com o cálculo do ponto mais próximo e o desempate pelo ponto aberto (`src/dominio/busca.js`, RN06), com testes;
+- escrever a lista de Estados (`src/dominio/estados.js`), a normalização de textos (`src/dominio/texto.js`) e as validações do cadastro de ponto (`src/dominio/validacao.js`, RN02, RN03 e RN05), com testes (CT10).
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
