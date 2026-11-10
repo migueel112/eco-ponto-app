@@ -46,3 +46,6 @@ yarn-error.*
 # variaveis de ambiente (chaves do Firebase etc.)
 .env
 
+
+# relatorio de cobertura dos testes
+coverage/
