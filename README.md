@@ -48,7 +48,7 @@ Requisitos não funcionais principais: a localização do usuário **nunca é ar
 |---|---|---|
 | React Native + Expo (SDK 58) | Base do aplicativo, em JavaScript | Em uso |
 | React Navigation | Navegação entre as telas (abas e pilhas) | Em uso |
-| Firebase (Authentication e Firestore) | Login dos parceiros e banco de dados com CRUD | Planejado |
+| Firebase (Authentication e Firestore) | Login dos parceiros e banco de dados com CRUD | Em configuração |
 | expo-location | Leitura do GPS (sensor do aparelho) | Planejado |
 | OpenStreetMap (mapa, Nominatim e OSRM) | Mapa, busca de endereço e rota | Planejado |
 | Vibração (React Native) | Retorno tátil ao usuário (atuador) | Planejado |
@@ -79,6 +79,14 @@ git clone <url-do-repositorio>
 cd eco-ponto-app
 npm install
 npx expo start
+```
+
+**Configuração do Firebase.** O app precisa de um arquivo `.env` na raiz com a configuração do Firebase. Copie o `.env.example` para `.env` e preencha os valores (peça ao grupo ou copie do Console do Firebase, em Configurações do projeto > Seus apps). O `.env` não vai para o GitHub.
+
+As regras de segurança do banco ficam em `firestore.rules` e são publicadas com o Firebase CLI:
+
+```bash
+npx firebase-tools@latest deploy --only firestore
 ```
 
 Abra o **Expo Go** no celular e leia o QR code que aparece no terminal (celular e computador na mesma rede Wi-Fi).
@@ -133,6 +141,7 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 - escrever a lista de Estados (`src/dominio/estados.js`), a normalização de textos (`src/dominio/texto.js`) e as validações do cadastro de ponto (`src/dominio/validacao.js`, RN02, RN03 e RN05), com testes (CT10);
 - escrever o controlador da busca (`src/controladores/ControladorBusca.js`), que recebe o banco e o serviço de endereços como parâmetro, com testes usando dados fictícios;
 - escrever o controlador do ponto de coleta (`src/controladores/ControladorPontoDeColeta.js`): detalhes, distância e rota, com o aviso de falta de internet, e os seus testes (CT08 e CT12);
-- escrever o controlador do cadastro (`src/controladores/ControladorCadastro.js`): login obrigatório, cadastrar, editar e excluir só os próprios pontos, e os seus testes (CT09, CT10, CT11, CT14 e CT15).
+- escrever o controlador do cadastro (`src/controladores/ControladorCadastro.js`): login obrigatório, cadastrar, editar e excluir só os próprios pontos, e os seus testes (CT09, CT10, CT11, CT14 e CT15);
+- criar o banco Firestore e registrar o app pelo Firebase CLI (o login na conta Google e o aceite dos termos foram feitos pela equipe), escrever e publicar as regras de segurança (`firestore.rules`) e escrever a inicialização do Firebase (`src/servicos/firebase.js`), seguindo a documentação do Expo SDK 58.
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
