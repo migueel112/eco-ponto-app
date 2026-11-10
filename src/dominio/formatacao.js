@@ -27,6 +27,49 @@ export function descreverDistancia(distanciaKm) {
   return `${distanciaKm.toFixed(1).replace('.', ',')} km`;
 }
 
+// Nomes dos dias na mesma numeração do HorarioFuncionamento (0 = domingo).
+export const NOMES_DOS_DIAS = [
+  'Domingo',
+  'Segunda-feira',
+  'Terça-feira',
+  'Quarta-feira',
+  'Quinta-feira',
+  'Sexta-feira',
+  'Sábado',
+];
+
+// Posição do dia na semana brasileira, que começa na segunda-feira.
+function ordemNaSemana(diaDaSemana) {
+  return (diaDaSemana + 6) % 7;
+}
+
+// "Segunda-feira: 08:00 às 17:00".
+export function descreverHorario(horario) {
+  return `${NOMES_DOS_DIAS[horario.diaDaSemana]}: ${horario.horaAbertura} às ${horario.horaFechamento}`;
+}
+
+// Horários em ordem de segunda a domingo e, no mesmo dia, pela abertura.
+export function ordenarHorarios(horarios) {
+  return [...(Array.isArray(horarios) ? horarios : [])].sort(
+    (a, b) =>
+      ordemNaSemana(a.diaDaSemana) - ordemNaSemana(b.diaDaSemana) ||
+      a.horaAbertura.localeCompare(b.horaAbertura)
+  );
+}
+
+// "(11) 3333-4444" ou "(11) 98888-7777". Outros formatos ficam como vieram.
+export function descreverTelefone(telefone) {
+  const digitos = typeof telefone === 'string' ? telefone.replace(/\D/g, '') : '';
+  const partes = /^(\d{2})(\d{4,5})(\d{4})$/.exec(digitos);
+  return partes ? `(${partes[1]}) ${partes[2]}-${partes[3]}` : telefone ?? '';
+}
+
+// "01310-200". Outros formatos ficam como vieram.
+export function descreverCep(cep) {
+  const digitos = typeof cep === 'string' ? cep.replace(/\D/g, '') : '';
+  return digitos.length === 8 ? `${digitos.slice(0, 5)}-${digitos.slice(5)}` : cep ?? '';
+}
+
 // Deixa a primeira letra maiúscula: "plástico" -> "Plástico".
 export function comInicialMaiuscula(texto) {
   return typeof texto === 'string' && texto.length > 0
