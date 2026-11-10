@@ -4,7 +4,7 @@ Aplicativo móvel que ajuda a encontrar o ponto de coleta de reciclagem mais pr�
 
 Projeto da disciplina **CCP150 – Desenvolvimento de Aplicativos Móveis**, feito em conjunto com a disciplina de **Engenharia de Software** (CCG110 – Documento Integrado), 2º semestre de 2026.
 
-> **Status:** em desenvolvimento. Prontos: o domínio (Haversine, "aberto agora", só pontos ativos, filtro por materiais, ordenação, ponto mais próximo e validações do cadastro) e os três controladores, todos com testes automatizados (Jest); o Firebase (Firestore em São Paulo, regras de segurança publicadas, login do parceiro e repositório de pontos); a consulta por região com dados reais (Estados na tela inicial e cidades na tela seguinte) a lista de pontos da cidade com filtro por material e os detalhes do ponto. As demais telas ainda são esqueletos. Ainda não há GPS, busca por endereço, mapa nem rota.
+> **Status:** em desenvolvimento. Prontos: o domínio (Haversine, "aberto agora", só pontos ativos, filtro por materiais, ordenação, ponto mais próximo e validações do cadastro) e os três controladores, todos com testes automatizados (Jest); o Firebase (Firestore em São Paulo, regras de segurança publicadas, login do parceiro e repositório de pontos); a consulta por região com dados reais (Estados na tela inicial e cidades na tela seguinte) a lista de pontos da cidade com filtro por material, os detalhes do ponto e o login do parceiro. As demais telas ainda são esqueletos. Ainda não há GPS, busca por endereço, mapa nem rota.
 
 **Equipe**
 
@@ -64,7 +64,7 @@ Funcionalidades já implementadas estão marcadas. Plano de telas:
 - [x] **Detalhes do ponto:** endereço, horários, materiais, telefone, "aberto agora" ou "fechado" e a distância quando há posição de referência (RF05)
 - [ ] **Rota no mapa** até o ponto (RF07)
 - [x] **Filtro por material:** com vários materiais, só os pontos que aceitam todos; sem resultado, oferece limpar o filtro (RF08)
-- [ ] **Login do parceiro**
+- [x] **Login do parceiro:** e-mail e senha pelo Firebase Authentication, com mensagens de erro em português; o parceiro continua logado ao reabrir o app e pode sair (RN04)
 - [ ] **Meus pontos:** listar, editar e excluir (RF09, RF10)
 - [ ] **Cadastro de ponto** (RF06)
 
@@ -155,6 +155,7 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 - escrever a montagem dos controladores com o Firebase (`src/montagem.js`) e o componente de feedback de carregando, erro e vazio (`src/componentes/EstadoCarregamento.js`), com testes da React Native Testing Library;
 - escrever o gancho `useConsulta` (`src/ganchos/useConsulta.js`), o rótulo de acessibilidade do Botao e as telas TelaInicial (Estados) e TelaConsultaRegiao (cidades) com dados do Firestore, carregando, erro e vazio, e os seus testes. A decisão de mostrar os Estados já na tela inicial, para cumprir os 3 toques do RNF01, foi do grupo;
 - escrever os textos de endereço, materiais e distância (`src/dominio/formatacao.js`), os componentes Alternador e CartaoPonto e a TelaListaPontos com o filtro por material, e os seus testes;
-- escrever os textos de dias, horários, telefone e CEP e a TelaDetalhes (aberto ou fechado, distância e botões de rota e de ligar), e os seus testes.
+- escrever os textos de dias, horários, telefone e CEP e a TelaDetalhes (aberto ou fechado, distância e botões de rota e de ligar), e os seus testes;
+- escrever o componente CampoTexto, o gancho useSessao, a TelaLoginParceiro e a troca automática da pilha do parceiro entre login e Meus pontos, e os seus testes.
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
