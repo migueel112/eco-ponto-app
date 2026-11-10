@@ -89,6 +89,12 @@ As regras de segurança do banco ficam em `firestore.rules` e são publicadas co
 npx firebase-tools@latest deploy --only firestore
 ```
 
+**Pontos fictícios para teste.** Com um parceiro de teste criado no Console do Firebase (Authentication > Usuários), o comando abaixo pede o e-mail e a senha dele e cadastra os pontos de `scripts/pontos-ficticios.json`. A senha não é mostrada nem gravada.
+
+```bash
+npm run popular-banco
+```
+
 Abra o **Expo Go** no celular e leia o QR code que aparece no terminal (celular e computador na mesma rede Wi-Fi).
 
 Para rodar os testes automatizados:
@@ -142,6 +148,7 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 - escrever o controlador da busca (`src/controladores/ControladorBusca.js`), que recebe o banco e o serviço de endereços como parâmetro, com testes usando dados fictícios;
 - escrever o controlador do ponto de coleta (`src/controladores/ControladorPontoDeColeta.js`): detalhes, distância e rota, com o aviso de falta de internet, e os seus testes (CT08 e CT12);
 - escrever o controlador do cadastro (`src/controladores/ControladorCadastro.js`): login obrigatório, cadastrar, editar e excluir só os próprios pontos, e os seus testes (CT09, CT10, CT11, CT14 e CT15);
-- criar o banco Firestore e registrar o app pelo Firebase CLI (o login na conta Google e o aceite dos termos foram feitos pela equipe), escrever e publicar as regras de segurança (`firestore.rules`) e escrever a inicialização do Firebase (`src/servicos/firebase.js`), seguindo a documentação do Expo SDK 58.
+- criar o banco Firestore e registrar o app pelo Firebase CLI (o login na conta Google e o aceite dos termos foram feitos pela equipe), escrever e publicar as regras de segurança (`firestore.rules`) e escrever a inicialização do Firebase (`src/servicos/firebase.js`), seguindo a documentação do Expo SDK 58;
+- escrever o repositório de pontos no Firestore (`src/servicos/repositorioPontos.js`), o serviço de login do parceiro (`src/servicos/autenticacao.js`), os seus testes e o script de pontos fictícios (`scripts/popular-banco.mjs`).
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
