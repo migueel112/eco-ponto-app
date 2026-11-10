@@ -11,13 +11,17 @@ import { criarControladorBusca } from './controladores/ControladorBusca';
 import { criarControladorPontoDeColeta } from './controladores/ControladorPontoDeColeta';
 import { criarControladorCadastro } from './controladores/ControladorCadastro';
 
-// TEMPORÁRIO: a busca de endereços (Nominatim) e as rotas (OSRM) chegam nas
-// etapas 4 e 5. Até lá, quem chamar recebe um erro claro.
-const servicoAindaIndisponivel = (nome) => async () => {
-  throw new Error(`${nome} ainda não está disponível nesta versão do app`);
+import { criarGeocodificador } from './servicos/geocodificador';
+
+// TEMPORÁRIO: as rotas (OSRM) chegam na etapa 5. Até lá, quem chamar recebe
+// um erro claro.
+const servicoRotas = {
+  calcularRota: async () => {
+    throw new Error('O cálculo de rota ainda não está disponível nesta versão do app');
+  },
 };
-const geocodificador = { geocodificar: servicoAindaIndisponivel('A busca por endereço') };
-const servicoRotas = { calcularRota: servicoAindaIndisponivel('O cálculo de rota') };
+
+export const geocodificador = criarGeocodificador();
 
 export const repositorioPontos = criarRepositorioPontos(db);
 export const autenticacao = criarAutenticacao(auth);
