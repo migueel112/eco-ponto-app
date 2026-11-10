@@ -1,6 +1,8 @@
 // TipoDeMaterial (nome, descricao) e o filtro por material (RF08).
 // No ponto, o campo materiais[] guarda os nomes dos tipos aceitos.
 
+import { normalizarTexto } from './texto';
+
 export const TIPOS_DE_MATERIAL = [
   { nome: 'papel', descricao: 'Papel, papelão, jornais e revistas' },
   { nome: 'plástico', descricao: 'Garrafas, embalagens e sacolas plásticas' },
@@ -12,14 +14,13 @@ export const TIPOS_DE_MATERIAL = [
 // Deixa o nome comparável: sem espaços nas pontas, em minúsculas e sem
 // acentos ("Plástico " e "plastico" viram o mesmo material).
 export function normalizarMaterial(nome) {
-  if (typeof nome !== 'string') {
-    return '';
-  }
-  return nome
-    .trim()
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '');
+  return normalizarTexto(nome);
+}
+
+// Diz se o nome corresponde a um dos TIPOS_DE_MATERIAL.
+export function materialConhecido(nome) {
+  const procurado = normalizarMaterial(nome);
+  return TIPOS_DE_MATERIAL.some((tipo) => normalizarMaterial(tipo.nome) === procurado);
 }
 
 // Diz se o ponto aceita TODOS os materiais pedidos. Sem materiais pedidos,
