@@ -19,6 +19,14 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "O Eco Ponto usa a sua localização só para mostrar o ponto de coleta mais próximo. A localização não é guardada."
+        }
+      ]
+    ]
   }
 }
