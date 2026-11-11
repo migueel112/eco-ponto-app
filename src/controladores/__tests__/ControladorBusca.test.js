@@ -150,7 +150,15 @@ describe('buscarMaisProximo (CT03)', () => {
     const { controlador } = criarControlador();
     expect(await controlador.buscarMaisProximo(PRACA_DA_SE, ['eletrônico'])).toEqual({
       resultado: null,
-      mensagem: MENSAGENS_BUSCA.nenhumProximo,
+      mensagem: MENSAGENS_BUSCA.nenhumProximoComFiltro,
+    });
+  });
+
+  test('sem pontos e sem filtro, a mensagem não fala em materiais', async () => {
+    const { controlador } = criarControlador({ pontos: [] });
+    expect(await controlador.buscarMaisProximo(PRACA_DA_SE)).toEqual({
+      resultado: null,
+      mensagem: 'Nenhum ponto de coleta ativo foi encontrado',
     });
   });
 
@@ -233,6 +241,6 @@ describe('buscarPorEndereco (CT05, CT06)', () => {
     const { controlador } = criarControlador();
     const resposta = await controlador.buscarPorSugestao(PAULISTA, ['eletrônico']);
     expect(resposta.resultado).toBeNull();
-    expect(resposta.mensagem).toBe(MENSAGENS_BUSCA.nenhumProximo);
+    expect(resposta.mensagem).toBe(MENSAGENS_BUSCA.nenhumProximoComFiltro);
   });
 });

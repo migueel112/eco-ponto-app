@@ -23,11 +23,17 @@ import { normalizarTexto } from '../dominio/texto';
 export const MENSAGENS_BUSCA = {
   cidadeSemPontos: 'Nenhum ponto de coleta cadastrado nesta cidade',
   filtroSemResultado: 'Nenhum ponto aceita todos os materiais escolhidos',
-  nenhumProximo: 'Nenhum ponto de coleta encontrado para os materiais escolhidos',
+  nenhumProximo: 'Nenhum ponto de coleta ativo foi encontrado',
+  nenhumProximoComFiltro: 'Nenhum ponto de coleta encontrado para os materiais escolhidos',
   enderecoVazio: 'Digite um endereço para pesquisar',
   enderecoNaoEncontrado: 'Endereço não encontrado. Confira o texto e tente de novo',
   enderecoAmbiguo: 'Encontramos mais de um endereço. Escolha o correto',
 };
+
+// Sem filtro de material, a mensagem não deve falar em materiais escolhidos.
+function mensagemSemResultado(tipos) {
+  return tipos.length > 0 ? MENSAGENS_BUSCA.nenhumProximoComFiltro : MENSAGENS_BUSCA.nenhumProximo;
+}
 
 export function criarControladorBusca({ repositorioPontos, geocodificador }) {
   // RN01 também é aplicada aqui, mesmo que o repositório já filtre.
@@ -42,7 +48,7 @@ export function criarControladorBusca({ repositorioPontos, geocodificador }) {
       const resultado = busca.calcularMaisProximo(await pontosAtivos(), tipos);
       return {
         resultado,
-        mensagem: resultado ? null : MENSAGENS_BUSCA.nenhumProximo,
+        mensagem: resultado ? null : mensagemSemResultado(tipos),
       };
     } finally {
       busca.encerrar();
