@@ -40,8 +40,6 @@ yarn-error.*
 /ios
 /android
 
-# Claude Code (configuracao local)
-.claude/
 
 # variaveis de ambiente (chaves do Firebase etc.)
 .env
