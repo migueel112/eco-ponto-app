@@ -4,7 +4,7 @@ Aplicativo móvel que ajuda a encontrar o ponto de coleta de reciclagem mais pr�
 
 Projeto da disciplina **CCP150 – Desenvolvimento de Aplicativos Móveis**, feito em conjunto com a disciplina de **Engenharia de Software** (CCG110 – Documento Integrado), 2º semestre de 2026.
 
-> **Status:** em desenvolvimento. Prontos: o domínio (Haversine, "aberto agora", só pontos ativos, filtro por materiais, ordenação, ponto mais próximo e validações do cadastro) e os três controladores, todos com testes automatizados (Jest); o Firebase (Firestore em São Paulo, regras de segurança publicadas, login do parceiro e repositório de pontos); a consulta por região com dados reais (Estados na tela inicial e cidades na tela seguinte) a lista de pontos da cidade com filtro por material, os detalhes do ponto, o login do parceiro, a lista Meus pontos e o cadastro e a edição de pontos, com o endereço convertido em coordenadas pelo Nominatim. As demais telas ainda são esqueletos. Ainda não há GPS, tela de busca por endereço, mapa nem rota.
+> **Status:** em desenvolvimento. Prontos: o domínio (Haversine, "aberto agora", só pontos ativos, filtro por materiais, ordenação, ponto mais próximo e validações do cadastro) e os três controladores, todos com testes automatizados (Jest); o Firebase (Firestore em São Paulo, regras de segurança publicadas, login do parceiro e repositório de pontos); a consulta por região com dados reais (Estados na tela inicial e cidades na tela seguinte) a lista de pontos da cidade com filtro por material, os detalhes do ponto, o login do parceiro, a lista Meus pontos e o cadastro e a edição de pontos, com o endereço convertido em coordenadas pelo Nominatim. As demais telas ainda são esqueletos. Também já funcionam a busca do ponto mais próximo pelo GPS e por endereço. Ainda não há mapa nem rota.
 
 **Equipe**
 
@@ -49,7 +49,7 @@ Requisitos não funcionais principais: a localização do usuário **nunca é ar
 | React Native + Expo (SDK 58) | Base do aplicativo, em JavaScript | Em uso |
 | React Navigation | Navegação entre as telas (abas e pilhas) | Em uso |
 | Firebase (Authentication e Firestore) | Login dos parceiros e banco de dados com CRUD | Em configuração |
-| expo-location | Leitura do GPS (sensor do aparelho) | Planejado |
+| expo-location | Leitura do GPS (sensor do aparelho) | Em uso |
 | OpenStreetMap (mapa, Nominatim e OSRM) | Mapa, busca de endereço e rota | Nominatim em uso; mapa e OSRM planejados |
 | Vibração (React Native) | Retorno tátil ao usuário (atuador) | Planejado |
 | Jest (preset jest-expo) | Testes automatizados do domínio e dos controladores | Em uso |
@@ -60,7 +60,7 @@ Funcionalidades já implementadas estão marcadas. Plano de telas:
 
 - [x] **Consulta por região:** os Estados com pontos aparecem na tela inicial e, ao tocar, a tela seguinte mostra as cidades (RF01). Estado, cidade e ponto em até 3 toques (RNF01).
 - [x] **Lista de pontos da cidade:** nome, endereço e materiais dos pontos ativos, com aviso quando a cidade não tem pontos (RF04)
-- [ ] **Tela inicial:** buscar o ponto mais próximo por GPS ou por endereço (RF02, RF03)
+- [x] **Ponto mais próximo por GPS ou por endereço:** na tela inicial, com a distância em km; permissão negada mostra aviso e oferece as outras buscas; endereço ambíguo mostra sugestões (RF02, RF03)
 - [x] **Detalhes do ponto:** endereço, horários, materiais, telefone, "aberto agora" ou "fechado" e a distância quando há posição de referência (RF05)
 - [ ] **Rota no mapa** até o ponto (RF07)
 - [x] **Filtro por material:** com vários materiais, só os pontos que aceitam todos; sem resultado, oferece limpar o filtro (RF08)
@@ -158,6 +158,7 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 - escrever os textos de dias, horários, telefone e CEP e a TelaDetalhes (aberto ou fechado, distância e botões de rota e de ligar), e os seus testes;
 - escrever o componente CampoTexto, o gancho useSessao, a TelaLoginParceiro e a troca automática da pilha do parceiro entre login e Meus pontos, e os seus testes;
 - escrever a TelaMeusPontos (lista do parceiro, editar e excluir com confirmação) e os seus testes;
-- escrever o serviço de geocodificação com o Nominatim (`src/servicos/geocodificador.js`), seguindo a política de uso do OpenStreetMap (1 pedido por segundo, identificação do app e atribuição), e a TelaCadastroPonto para cadastrar e editar, com os seus testes.
+- escrever o serviço de geocodificação com o Nominatim (`src/servicos/geocodificador.js`), seguindo a política de uso do OpenStreetMap (1 pedido por segundo, identificação do app e atribuição), e a TelaCadastroPonto para cadastrar e editar, com os seus testes;
+- configurar o expo-location e escrever o serviço de localização (`src/servicos/localizacao.js`, que nunca grava a posição), o gancho useBuscaProximo e a busca por GPS e por endereço na tela inicial, com os seus testes.
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
