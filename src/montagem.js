@@ -12,16 +12,10 @@ import { criarControladorPontoDeColeta } from './controladores/ControladorPontoD
 import { criarControladorCadastro } from './controladores/ControladorCadastro';
 
 import { criarGeocodificador } from './servicos/geocodificador';
-
-// TEMPORÁRIO: as rotas (OSRM) chegam na etapa 5. Até lá, quem chamar recebe
-// um erro claro.
-const servicoRotas = {
-  calcularRota: async () => {
-    throw new Error('O cálculo de rota ainda não está disponível nesta versão do app');
-  },
-};
+import { criarServicoRotas } from './servicos/rotas';
 
 export const geocodificador = criarGeocodificador();
+const servicoRotas = criarServicoRotas();
 
 export const repositorioPontos = criarRepositorioPontos(db);
 export const autenticacao = criarAutenticacao(auth);
