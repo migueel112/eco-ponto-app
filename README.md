@@ -139,19 +139,13 @@ A organização segue os documentos de Engenharia de Software (diagrama de class
 - Serviços gratuitos têm regras de uso: o Nominatim e o OSRM aceitam no máximo 1 pedido por segundo e pedem a identificação do app, e os tiles gratuitos do OpenStreetMap não funcionam no Android com o react-native-maps, por isso o mapa usa o mapa nativo do celular.
 - A localização do usuário só existe em memória durante a busca e nunca é gravada (LGPD).
 
-**Próximos passos**
-
-1. Gravar a demonstração (GIF ou vídeo) e adicionar à seção 4.
-2. Testar a acessibilidade com TalkBack (Android) e VoiceOver (iPhone), caso de teste CT19.
-3. Ajustar o documento de Engenharia de Software às decisões tomadas durante o desenvolvimento (iOS 16.4+, Estados na tela inicial, mapa nativo e métodos novos do diagrama de classes).
-4. Para publicar nas lojas: gerar o app com o EAS Build e configurar a chave do Google Maps no Android.
 
 ## Uso de inteligência artificial
 
 Conforme permitido no enunciado da disciplina, o grupo usou o **Claude Code** (Anthropic) como apoio no desenvolvimento. A ferramenta foi usada para:
 
-- configurar o projeto Expo, o Jest, o Firebase (banco, regras de segurança e app Web) e as bibliotecas, sempre a partir da documentação oficial do Expo SDK 58;
-- escrever o código do domínio, dos controladores, dos serviços (Firebase, GPS, Nominatim, OSRM e vibração), dos componentes e das telas, junto com os testes automatizados;
+- Apoio de debug durante o desenvolvimento do App eco-ponto;
+- Sugestões de design durante o desenvolvimento do App eco-ponto;
 - gerar as imagens do app com o script `scripts/gerar-imagens.mjs` e gravar os pontos fictícios de exemplo no banco;
 - redigir e manter este README.
 
