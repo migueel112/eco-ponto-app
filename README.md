@@ -4,7 +4,7 @@ Aplicativo móvel que ajuda a encontrar o ponto de coleta de reciclagem mais pr�
 
 Projeto da disciplina **CCP150 – Desenvolvimento de Aplicativos Móveis**, feito em conjunto com a disciplina de **Engenharia de Software** (CCG110 – Documento Integrado), 2º semestre de 2026.
 
-> **Status:** em desenvolvimento. Prontos: o domínio (Haversine, "aberto agora", só pontos ativos, filtro por materiais, ordenação, ponto mais próximo e validações do cadastro) e os três controladores, todos com testes automatizados (Jest); o Firebase (Firestore em São Paulo, regras de segurança publicadas, login do parceiro e repositório de pontos); a consulta por região com dados reais (Estados na tela inicial e cidades na tela seguinte) a lista de pontos da cidade com filtro por material, os detalhes do ponto, o login do parceiro, a lista Meus pontos e o cadastro e a edição de pontos, com o endereço convertido em coordenadas pelo Nominatim. As demais telas ainda são esqueletos. Também já funcionam a busca do ponto mais próximo pelo GPS e por endereço e a rota no mapa. A vibração já dá retorno nos sucessos e erros. Faltam as imagens e a demonstração.
+> **Status:** em desenvolvimento. Prontos: o domínio (Haversine, "aberto agora", só pontos ativos, filtro por materiais, ordenação, ponto mais próximo e validações do cadastro) e os três controladores, todos com testes automatizados (Jest); o Firebase (Firestore em São Paulo, regras de segurança publicadas, login do parceiro e repositório de pontos); a consulta por região com dados reais (Estados na tela inicial e cidades na tela seguinte) a lista de pontos da cidade com filtro por material, os detalhes do ponto, o login do parceiro, a lista Meus pontos e o cadastro e a edição de pontos, com o endereço convertido em coordenadas pelo Nominatim. As demais telas ainda são esqueletos. Também já funcionam a busca do ponto mais próximo pelo GPS e por endereço e a rota no mapa. A vibração já dá retorno nos sucessos e erros, e o app tem logo e ícones por tipo de material. Falta a demonstração em vídeo ou GIF.
 
 **Equipe**
 
@@ -52,6 +52,7 @@ Requisitos não funcionais principais: a localização do usuário **nunca é ar
 | expo-location | Leitura do GPS (sensor do aparelho) | Em uso |
 | OpenStreetMap (Nominatim e OSRM) | Busca de endereço e cálculo da rota | Em uso |
 | react-native-maps | Mapa da rota (mapa nativo: Google Maps no Android, Apple Maps no iPhone) | Em uso |
+| Imagens (componente Image) | Logo do app e ícones dos materiais, gerados por `scripts/gerar-imagens.mjs` | Em uso |
 | Vibração (React Native) | Retorno tátil ao usuário (atuador): uma vibração no sucesso, duas no erro | Em uso |
 | Jest (preset jest-expo) | Testes automatizados do domínio e dos controladores | Em uso |
 
@@ -162,6 +163,7 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 - escrever o serviço de geocodificação com o Nominatim (`src/servicos/geocodificador.js`), seguindo a política de uso do OpenStreetMap (1 pedido por segundo, identificação do app e atribuição), e a TelaCadastroPonto para cadastrar e editar, com os seus testes;
 - configurar o expo-location e escrever o serviço de localização (`src/servicos/localizacao.js`, que nunca grava a posição), o gancho useBuscaProximo e a busca por GPS e por endereço na tela inicial, com os seus testes;
 - escrever o serviço de rotas com o OSRM (`src/servicos/rotas.js`), as funções de tempo, região do mapa e link de navegação (`src/dominio/rota.js`) e a TelaRota com o react-native-maps, e os seus testes. O grupo trocou os tiles do OpenStreetMap pelo mapa nativo do celular, porque a documentação do react-native-maps avisa que os tiles gratuitos do OSM não funcionam no Android e a política de uso deles exige identificação do app que o componente não permite;
-- escrever o serviço de vibração (`src/servicos/vibracao.js`) e ligá-lo aos sucessos e erros das telas, com testes.
+- escrever o serviço de vibração (`src/servicos/vibracao.js`) e ligá-lo aos sucessos e erros das telas, com testes;
+- desenhar as imagens do app (logo e ícones dos materiais, nas cores da coleta seletiva) com o script `scripts/gerar-imagens.mjs`, que gera os PNGs com formas geométricas, e escrever os componentes IconeMaterial e Logo, com testes.
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
