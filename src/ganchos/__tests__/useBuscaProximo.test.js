@@ -4,6 +4,9 @@ import { render, act } from '@testing-library/react-native';
 import useBuscaProximo, { MENSAGENS_PROXIMO } from '../useBuscaProximo';
 import { controladorBusca } from '../../montagem';
 import { obterPosicaoAtual } from '../../servicos/localizacao';
+import { vibrarSucesso, vibrarErro } from '../../servicos/vibracao';
+
+jest.mock('../../servicos/vibracao', () => ({ vibrarSucesso: jest.fn(), vibrarErro: jest.fn() }));
 
 jest.mock('../../montagem', () => ({
   controladorBusca: { buscarMaisProximo: jest.fn(), buscarPorEndereco: jest.fn(), buscarPorSugestao: jest.fn() },
@@ -55,6 +58,7 @@ describe('GPS', () => {
     });
     expect(controladorBusca.buscarMaisProximo).toHaveBeenCalledWith(ORIGEM);
     expect(busca.estado).toEqual({ fase: 'pronto', resultado: RESULTADO, origem: ORIGEM, endereco: null });
+    expect(vibrarSucesso).toHaveBeenCalled();
   });
 
   test('sem ponto que atenda, mostra o aviso do controlador', async () => {
@@ -80,6 +84,7 @@ describe('GPS', () => {
     obterPosicaoAtual.mockRejectedValue(falha);
     await act(() => busca.usarGps());
     expect(busca.estado).toEqual({ fase: 'aviso', mensagem, abrirAjustes });
+    expect(vibrarErro).toHaveBeenCalled();
     expect(controladorBusca.buscarMaisProximo).not.toHaveBeenCalled();
   });
 });
@@ -125,6 +130,7 @@ describe('endereço', () => {
     controladorBusca.buscarPorEndereco.mockResolvedValue({ situacao: 'naoEncontrado', mensagem: 'Não encontrado' });
     await act(() => busca.pesquisarEndereco('xyz'));
     expect(busca.estado).toEqual({ fase: 'aviso', mensagem: 'Não encontrado' });
+    expect(vibrarErro).toHaveBeenCalled();
   });
 
   test('sem internet, avisa', async () => {

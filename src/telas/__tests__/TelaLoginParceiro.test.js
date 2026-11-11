@@ -2,6 +2,9 @@
 import { render, screen, userEvent } from '@testing-library/react-native';
 import TelaLoginParceiro from '../TelaLoginParceiro';
 import { autenticacao } from '../../montagem';
+import { vibrarErro } from '../../servicos/vibracao';
+
+jest.mock('../../servicos/vibracao', () => ({ vibrarSucesso: jest.fn(), vibrarErro: jest.fn() }));
 
 jest.mock('../../montagem', () => ({
   autenticacao: { entrar: jest.fn() },
@@ -40,6 +43,7 @@ test('erro de login aparece como alerta e libera o botão', async () => {
   await user.press(screen.getByRole('button', { name: 'Entrar' }));
   expect(await screen.findByRole('alert')).toHaveTextContent('E-mail ou senha incorretos');
   expect(screen.getByRole('button', { name: 'Entrar' })).not.toBeDisabled();
+  expect(vibrarErro).toHaveBeenCalled();
 });
 
 test('a senha fica oculta', async () => {

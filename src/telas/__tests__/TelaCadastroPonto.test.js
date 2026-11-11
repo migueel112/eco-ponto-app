@@ -3,6 +3,9 @@ import { Alert } from 'react-native';
 import { render, screen, userEvent } from '@testing-library/react-native';
 import TelaCadastroPonto from '../TelaCadastroPonto';
 import { controladorCadastro } from '../../montagem';
+import { vibrarSucesso, vibrarErro } from '../../servicos/vibracao';
+
+jest.mock('../../servicos/vibracao', () => ({ vibrarSucesso: jest.fn(), vibrarErro: jest.fn() }));
 
 jest.mock('../../montagem', () => ({
   controladorCadastro: { cadastrarPonto: jest.fn(), editarPonto: jest.fn() },
@@ -64,6 +67,7 @@ test('cadastro válido envia os dados, avisa e volta (CT11)', async () => {
     horarios: [{ diaDaSemana: 2, horaAbertura: '08:00', horaFechamento: '17:00' }],
   });
   expect(Alert.alert).toHaveBeenCalledWith('Pronto', 'Ponto de coleta cadastrado');
+  expect(vibrarSucesso).toHaveBeenCalled();
   expect(navigation.goBack).toHaveBeenCalled();
 });
 
@@ -96,6 +100,7 @@ test('cadastro inválido mostra os erros em cada campo (CT10)', async () => {
     ])
   );
   expect(navigation.goBack).not.toHaveBeenCalled();
+  expect(vibrarErro).toHaveBeenCalled();
   expect(screen.getByRole('button', { name: 'Cadastrar ponto' })).not.toBeDisabled();
 });
 

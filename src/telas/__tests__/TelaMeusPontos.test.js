@@ -3,6 +3,9 @@ import { Alert } from 'react-native';
 import { render, screen, userEvent, act } from '@testing-library/react-native';
 import TelaMeusPontos from '../TelaMeusPontos';
 import { controladorCadastro } from '../../montagem';
+import { vibrarSucesso, vibrarErro } from '../../servicos/vibracao';
+
+jest.mock('../../servicos/vibracao', () => ({ vibrarSucesso: jest.fn(), vibrarErro: jest.fn() }));
 
 jest.mock('../../montagem', () => ({
   controladorCadastro: { listarMeusPontos: jest.fn(), excluirPonto: jest.fn() },
@@ -89,6 +92,7 @@ test('confirmar exclui, avisa o sucesso e recarrega a lista', async () => {
 
   expect(controladorCadastro.excluirPonto).toHaveBeenCalledWith('1');
   expect(screen.getByRole('alert')).toHaveTextContent('Ponto de coleta excluído');
+  expect(vibrarSucesso).toHaveBeenCalled();
   expect(await screen.findByText('Você ainda não cadastrou nenhum ponto de coleta.')).toBeTruthy();
 });
 
@@ -103,6 +107,7 @@ test('exclusão recusada ou com falha mostra o erro', async () => {
   await user.press(await screen.findByRole('button', { name: 'Excluir Ecoponto Teste Alfa' }));
   await act(async () => tocarNoAlerta('Excluir'));
   expect(screen.getByRole('alert')).toHaveTextContent('Você só pode alterar os seus próprios pontos');
+  expect(vibrarErro).toHaveBeenCalledTimes(1);
 
   await user.press(screen.getByRole('button', { name: 'Excluir Ecoponto Teste Alfa' }));
   await act(async () => tocarNoAlerta('Excluir'));

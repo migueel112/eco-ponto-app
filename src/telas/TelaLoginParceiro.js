@@ -4,6 +4,7 @@ import Botao from '../componentes/Botao';
 import CampoTexto from '../componentes/CampoTexto';
 import TelaBase from '../componentes/TelaBase';
 import { autenticacao } from '../montagem';
+import { vibrarErro } from '../servicos/vibracao';
 import { cores, tipografia } from '../tema';
 
 // Login do parceiro ambiental com e-mail e senha (RN04). Depois do login, a
@@ -20,6 +21,7 @@ export default function TelaLoginParceiro() {
     setErro(null);
     const resposta = await autenticacao.entrar(email, senha);
     if (!resposta.sucesso) {
+      vibrarErro();
       setErro(resposta.mensagem);
       setEntrando(false);
     }

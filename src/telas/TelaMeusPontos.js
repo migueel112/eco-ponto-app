@@ -8,6 +8,7 @@ import { descreverEndereco, descreverMateriais } from '../dominio/formatacao';
 import { SITUACAO_ATIVO } from '../dominio/pontoDeColeta';
 import useConsulta from '../ganchos/useConsulta';
 import { controladorCadastro } from '../montagem';
+import { vibrarErro, vibrarSucesso } from '../servicos/vibracao';
 import { cores, espacamento, raio, tipografia } from '../tema';
 
 // Pontos do parceiro logado, ativos e inativos, com editar (RF09) e excluir
@@ -25,9 +26,13 @@ export default function TelaMeusPontos({ navigation }) {
       const resposta = await controladorCadastro.excluirPonto(ponto.id);
       setAviso({ texto: resposta.mensagem, sucesso: resposta.sucesso });
       if (resposta.sucesso) {
+        vibrarSucesso();
         recarregar();
+      } else {
+        vibrarErro();
       }
     } catch {
+      vibrarErro();
       setAviso({ texto: 'Não foi possível excluir o ponto. Tente novamente.', sucesso: false });
     }
   }

@@ -11,6 +11,7 @@ import { horarioValido } from '../dominio/horario';
 import { TIPOS_DE_MATERIAL } from '../dominio/materiais';
 import { ATRIBUICAO_OSM } from '../servicos/geocodificador';
 import { controladorCadastro } from '../montagem';
+import { vibrarErro, vibrarSucesso } from '../servicos/vibracao';
 import { cores, espacamento, tipografia } from '../tema';
 
 const CAMPOS_ENDERECO = ['logradouro', 'numero', 'bairro', 'cep'];
@@ -78,13 +79,16 @@ export default function TelaCadastroPonto({ navigation, route }) {
         ? await controladorCadastro.editarPonto(original.id, dadosParaEnviar())
         : await controladorCadastro.cadastrarPonto(dadosParaEnviar());
       if (resposta.sucesso) {
+        vibrarSucesso();
         Alert.alert('Pronto', resposta.mensagem);
         navigation.goBack();
         return;
       }
+      vibrarErro();
       setErros(resposta.erros ?? {});
       setAviso(resposta.mensagem);
     } catch (erro) {
+      vibrarErro();
       setAviso(
         erro?.codigo === ERRO_SEM_CONEXAO
           ? 'Sem conexão com a internet. Não foi possível salvar o ponto.'

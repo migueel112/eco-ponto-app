@@ -7,6 +7,7 @@ import {
   ERRO_PERMISSAO_NEGADA,
   ERRO_TEMPO_ESGOTADO,
 } from '../servicos/localizacao';
+import { vibrarErro, vibrarSucesso } from '../servicos/vibracao';
 
 export const MENSAGENS_PROXIMO = {
   obtendoLocalizacao: 'Obtendo a sua localização...',
@@ -49,9 +50,11 @@ export default function useBuscaProximo() {
   // Mostra o resultado de buscarMaisProximo/buscarPorSugestao.
   function mostrar(resposta, origem, endereco = null) {
     if (!resposta.resultado) {
+      vibrarErro();
       setEstado({ fase: 'aviso', mensagem: resposta.mensagem });
       return;
     }
+    vibrarSucesso();
     setEstado({ fase: 'pronto', resultado: resposta.resultado, origem, endereco });
   }
 
@@ -60,6 +63,7 @@ export default function useBuscaProximo() {
     try {
       await tarefa();
     } catch (erro) {
+      vibrarErro();
       setEstado({
         fase: 'aviso',
         mensagem: mensagemDoErro(erro),
@@ -86,6 +90,7 @@ export default function useBuscaProximo() {
         } else if (resposta.situacao === 'sugestoes') {
           setEstado({ fase: 'sugestoes', sugestoes: resposta.sugestoes, mensagem: resposta.mensagem });
         } else {
+          vibrarErro();
           setEstado({ fase: 'aviso', mensagem: resposta.mensagem });
         }
       }),
