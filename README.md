@@ -93,7 +93,7 @@ As regras de segurança do banco ficam em `firestore.rules` e são publicadas co
 npx firebase-tools@latest deploy --only firestore
 ```
 
-**Pontos fictícios para teste.** Com um parceiro de teste criado no Console do Firebase (Authentication > Usuários), o comando abaixo pede o e-mail e a senha dele e cadastra os pontos de `scripts/pontos-ficticios.json`. A senha não é mostrada nem gravada.
+**Pontos fictícios para teste.** O banco do projeto já tem os 10 pontos de exemplo de `scripts/pontos-ficticios.json` (todos com nome "Ecoponto Teste ...", um deles inativo), gravados com o acesso de administrador do Firebase CLI e ligados a um dono fictício (`parceiro-exemplo`), por isso não podem ser editados pelo app. Com um parceiro de teste criado no Console do Firebase (Authentication > Usuários), o comando abaixo pede o e-mail e a senha dele e cadastra os pontos de `scripts/pontos-ficticios.json`. A senha não é mostrada nem gravada.
 
 ```bash
 npm run popular-banco
@@ -164,6 +164,7 @@ Este projeto usa o **Claude Code** (Anthropic) como apoio, conforme permitido no
 - configurar o expo-location e escrever o serviço de localização (`src/servicos/localizacao.js`, que nunca grava a posição), o gancho useBuscaProximo e a busca por GPS e por endereço na tela inicial, com os seus testes;
 - escrever o serviço de rotas com o OSRM (`src/servicos/rotas.js`), as funções de tempo, região do mapa e link de navegação (`src/dominio/rota.js`) e a TelaRota com o react-native-maps, e os seus testes. O grupo trocou os tiles do OpenStreetMap pelo mapa nativo do celular, porque a documentação do react-native-maps avisa que os tiles gratuitos do OSM não funcionam no Android e a política de uso deles exige identificação do app que o componente não permite;
 - escrever o serviço de vibração (`src/servicos/vibracao.js`) e ligá-lo aos sucessos e erros das telas, com testes;
+- gravar no banco os pontos fictícios de exemplo, com o acesso de administrador do Firebase CLI do grupo;
 - desenhar as imagens do app (logo e ícones dos materiais, nas cores da coleta seletiva) com o script `scripts/gerar-imagens.mjs`, que gera os PNGs com formas geométricas, e escrever os componentes IconeMaterial e Logo, com testes.
 
 A equipe revisa, testa e entende todo código incorporado e atualiza esta seção conforme o uso da IA avança.
