@@ -190,6 +190,7 @@ describe('buscarPorEndereco (CT05, CT06)', () => {
     expect(geocodificador.geocodificar).toHaveBeenCalledWith('Avenida Paulista, 1000');
     expect(resposta.situacao).toBe('encontrado');
     expect(resposta.endereco).toBe(PAULISTA.descricao);
+    expect(resposta.origem).toEqual({ latitude: PAULISTA.latitude, longitude: PAULISTA.longitude });
     expect(resposta.resultado.ponto.id).toBe('2');
   });
 

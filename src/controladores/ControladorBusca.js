@@ -50,13 +50,12 @@ export function criarControladorBusca({ repositorioPontos, geocodificador }) {
   }
 
   // Continua a busca com o endereço que o usuário escolheu nas sugestões.
+  // Devolve também a origem (as coordenadas do endereço PESQUISADO, não do
+  // GPS), para a tela de detalhes mostrar a distância. Fica só em memória.
   async function buscarPorSugestao(sugestao, tipos = []) {
-    const { resultado, mensagem } = await calcularMaisProximo(
-      TIPO_ORIGEM_ENDERECO,
-      { latitude: sugestao.latitude, longitude: sugestao.longitude },
-      tipos
-    );
-    return { situacao: 'encontrado', endereco: sugestao.descricao, resultado, mensagem };
+    const origem = { latitude: sugestao.latitude, longitude: sugestao.longitude };
+    const { resultado, mensagem } = await calcularMaisProximo(TIPO_ORIGEM_ENDERECO, origem, tipos);
+    return { situacao: 'encontrado', endereco: sugestao.descricao, origem, resultado, mensagem };
   }
 
   return {
