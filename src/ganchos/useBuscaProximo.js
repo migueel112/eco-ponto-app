@@ -22,7 +22,8 @@ export const MENSAGENS_PROXIMO = {
 
 const INICIAL = { fase: 'ocioso' };
 
-function mensagemDoErro(erro) {
+// Também usada pela TelaRota para os erros do GPS.
+export function mensagemDoErro(erro) {
   switch (erro?.codigo) {
     case ERRO_PERMISSAO_NEGADA:
       return erro.podePerguntarDeNovo === false
