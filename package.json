@@ -29,7 +29,8 @@
     "web": "expo start --web",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "popular-banco": "node scripts/popular-banco.mjs"
+    "popular-banco": "node scripts/popular-banco.mjs",
+    "gerar-imagens": "node scripts/gerar-imagens.mjs"
   },
   "private": true,
   "jest": {
