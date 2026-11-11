@@ -3,8 +3,8 @@ import { alturaToque, cores, espacamento, raio } from '../tema';
 
 // Botão que liga e desliga (usado no filtro de materiais). Quando ligado,
 // fica preenchido de verde e mostra um "✓". O leitor de tela anuncia se
-// está marcado ou não (RNF07).
-export default function Alternador({ titulo, ligado, aoAlternar, rotuloAcessivel }) {
+// está marcado ou não (RNF07). "icone" (opcional) aparece antes do título.
+export default function Alternador({ titulo, ligado, aoAlternar, rotuloAcessivel, icone = null }) {
   return (
     <Pressable
       onPress={aoAlternar}
@@ -17,6 +17,7 @@ export default function Alternador({ titulo, ligado, aoAlternar, rotuloAcessivel
         pressed && styles.pressionado,
       ]}
     >
+      {icone}
       <Text style={[styles.texto, ligado ? styles.textoLigado : styles.textoDesligado]}>
         {ligado ? `✓ ${titulo}` : titulo}
       </Text>
@@ -31,7 +32,9 @@ const styles = StyleSheet.create({
     borderRadius: raio.md,
     borderWidth: 2,
     borderColor: cores.primaria,
-    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espacamento.sm,
   },
   ligado: {
     backgroundColor: cores.primaria,

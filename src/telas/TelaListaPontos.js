@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Alternador from '../componentes/Alternador';
 import CartaoPonto from '../componentes/CartaoPonto';
 import EstadoCarregamento from '../componentes/EstadoCarregamento';
+import IconeMaterial from '../componentes/IconeMaterial';
 import TelaBase from '../componentes/TelaBase';
 import { TIPOS_DE_MATERIAL } from '../dominio/materiais';
 import { comInicialMaiuscula } from '../dominio/formatacao';
@@ -42,6 +43,7 @@ export default function TelaListaPontos({ navigation, route }) {
               key={tipo.nome}
               titulo={comInicialMaiuscula(tipo.nome)}
               rotuloAcessivel={`Filtrar por ${tipo.nome}`}
+              icone={<IconeMaterial nome={tipo.nome} tamanho={24} />}
               ligado={tipos.includes(tipo.nome)}
               aoAlternar={() => alternarMaterial(tipo.nome)}
             />

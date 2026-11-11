@@ -3,6 +3,7 @@ import { Alert, StyleSheet, Text, View } from 'react-native';
 import Alternador from '../componentes/Alternador';
 import Botao from '../componentes/Botao';
 import CampoTexto from '../componentes/CampoTexto';
+import IconeMaterial from '../componentes/IconeMaterial';
 import Cartao from '../componentes/Cartao';
 import TelaBase from '../componentes/TelaBase';
 import { ERRO_SEM_CONEXAO } from '../dominio/erros';
@@ -165,6 +166,7 @@ export default function TelaCadastroPonto({ navigation, route }) {
               key={tipo.nome}
               titulo={comInicialMaiuscula(tipo.nome)}
               rotuloAcessivel={`Aceita ${tipo.nome}`}
+              icone={<IconeMaterial nome={tipo.nome} tamanho={24} />}
               ligado={dados.materiais.includes(tipo.nome)}
               aoAlternar={() => alternarMaterial(tipo.nome)}
             />

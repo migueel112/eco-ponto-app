@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { descreverDistancia, descreverEndereco, descreverMateriais } from '../dominio/formatacao';
 import { cores, espacamento, raio, tipografia } from '../tema';
+import IconeMaterial from './IconeMaterial';
 
 // Resumo de um ponto de coleta numa lista: nome, endereço, materiais e, se
 // houver, a distância. O cartão inteiro é tocável (abre os detalhes).
@@ -27,6 +28,11 @@ export default function CartaoPonto({ ponto, aoPressionar }) {
       </View>
       <Text style={tipografia.corpo}>{endereco}</Text>
       <Text style={tipografia.legenda}>Aceita: {materiais}</Text>
+      <View style={styles.icones}>
+        {(ponto.materiais ?? []).map((material) => (
+          <IconeMaterial key={material} nome={material} tamanho={28} />
+        ))}
+      </View>
     </Pressable>
   );
 }
@@ -51,5 +57,10 @@ const styles = StyleSheet.create({
   },
   nome: {
     flexShrink: 1,
+  },
+  icones: {
+    flexDirection: 'row',
+    gap: espacamento.xs,
+    marginTop: espacamento.xs,
   },
 });

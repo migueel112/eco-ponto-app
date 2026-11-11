@@ -50,6 +50,11 @@ describe('Estados (RF01)', () => {
     expect(navigation.navigate).toHaveBeenCalledWith('ConsultaRegiao', { uf: 'SP', nomeEstado: 'São Paulo' });
   });
 
+  test('mostra o logo do app', async () => {
+    await renderizar();
+    expect(screen.getByRole('image', { name: 'Logo do Eco Ponto' })).toBeTruthy();
+  });
+
   test('mostra o carregando enquanto busca', async () => {
     controladorBusca.listarEstados.mockReturnValue(new Promise(() => {}));
     await render(<TelaInicial navigation={navigation} />);

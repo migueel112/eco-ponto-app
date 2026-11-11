@@ -5,6 +5,7 @@ import CampoTexto from '../componentes/CampoTexto';
 import Cartao from '../componentes/Cartao';
 import CartaoPonto from '../componentes/CartaoPonto';
 import EstadoCarregamento from '../componentes/EstadoCarregamento';
+import Logo from '../componentes/Logo';
 import TelaBase from '../componentes/TelaBase';
 import useBuscaProximo from '../ganchos/useBuscaProximo';
 import useConsulta from '../ganchos/useConsulta';
@@ -25,7 +26,14 @@ export default function TelaInicial({ navigation }) {
   const buscando = busca.fase === 'buscando';
 
   return (
-    <TelaBase descricao="Encontre o ponto de coleta de reciclagem mais próximo de você.">
+    <TelaBase>
+      <View style={styles.marca}>
+        <Logo tamanho={72} />
+        <Text style={[tipografia.corpo, styles.textoMarca]}>
+          Encontre o ponto de coleta de reciclagem mais próximo de você.
+        </Text>
+      </View>
+
       <Botao titulo="Usar minha localização" aoPressionar={usarGps} desabilitado={buscando} />
 
       <Cartao estilo={styles.secao}>
@@ -146,6 +154,14 @@ function ResultadoBusca({ busca, aoAbrirPonto, aoEscolherSugestao, aoFechar }) {
 }
 
 const styles = StyleSheet.create({
+  marca: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: espacamento.md,
+  },
+  textoMarca: {
+    flex: 1,
+  },
   secao: {
     gap: espacamento.sm,
   },

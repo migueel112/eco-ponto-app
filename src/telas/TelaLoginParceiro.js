@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import Botao from '../componentes/Botao';
 import CampoTexto from '../componentes/CampoTexto';
+import Logo from '../componentes/Logo';
 import TelaBase from '../componentes/TelaBase';
 import { autenticacao } from '../montagem';
 import { vibrarErro } from '../servicos/vibracao';
-import { cores, tipografia } from '../tema';
+import { cores, espacamento, tipografia } from '../tema';
 
 // Login do parceiro ambiental com e-mail e senha (RN04). Depois do login, a
 // pilha do parceiro troca sozinha para "Meus pontos" (ver PilhaParceiro).
@@ -29,7 +30,14 @@ export default function TelaLoginParceiro() {
   }
 
   return (
-    <TelaBase descricao="Área para órgãos e parceiros ambientais cadastrarem e manterem os seus pontos de coleta.">
+    <TelaBase>
+      <View style={styles.marca}>
+        <Logo tamanho={96} />
+        <Text style={[tipografia.corpo, styles.textoMarca]}>
+          Área para órgãos e parceiros ambientais cadastrarem e manterem os seus pontos de coleta.
+        </Text>
+      </View>
+
       <CampoTexto
         rotulo="E-mail"
         valor={email}
@@ -62,6 +70,13 @@ export default function TelaLoginParceiro() {
 }
 
 const styles = StyleSheet.create({
+  marca: {
+    alignItems: 'center',
+    gap: espacamento.md,
+  },
+  textoMarca: {
+    textAlign: 'center',
+  },
   erro: {
     ...tipografia.corpo,
     color: cores.erro,

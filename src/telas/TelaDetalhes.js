@@ -2,6 +2,7 @@ import { Linking, StyleSheet, Text, View } from 'react-native';
 import Botao from '../componentes/Botao';
 import Cartao from '../componentes/Cartao';
 import EstadoCarregamento from '../componentes/EstadoCarregamento';
+import IconeMaterial from '../componentes/IconeMaterial';
 import TelaBase from '../componentes/TelaBase';
 import {
   descreverCep,
@@ -83,6 +84,11 @@ function Conteudo({ ponto, aberto, distanciaKm, aoVerRota }) {
       <Cartao estilo={styles.secao}>
         <Text style={tipografia.subtitulo}>Materiais aceitos</Text>
         <Text style={tipografia.corpo}>{descreverMateriais(ponto.materiais)}</Text>
+        <View style={styles.icones}>
+          {(ponto.materiais ?? []).map((material) => (
+            <IconeMaterial key={material} nome={material} tamanho={40} />
+          ))}
+        </View>
       </Cartao>
 
       <Cartao estilo={styles.secao}>
@@ -133,5 +139,10 @@ const styles = StyleSheet.create({
   },
   secao: {
     gap: espacamento.xs,
+  },
+  icones: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: espacamento.sm,
   },
 });

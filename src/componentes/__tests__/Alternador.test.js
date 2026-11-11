@@ -16,6 +16,12 @@ test('ligado: mostra o ✓ e é anunciado como marcado', async () => {
   expect(caixa).toHaveTextContent('✓ Vidro');
 });
 
+test('mostra o ícone antes do título', async () => {
+  const { Text } = require('react-native');
+  await render(<Alternador titulo="Papel" ligado={false} aoAlternar={() => {}} icone={<Text>ícone</Text>} />);
+  expect(screen.getByRole('checkbox', { name: 'Papel' })).toHaveTextContent('íconePapel');
+});
+
 test('o toque chama aoAlternar', async () => {
   const alternar = jest.fn();
   const user = userEvent.setup();

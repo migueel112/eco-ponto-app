@@ -46,7 +46,8 @@ test('erro de login aparece como alerta e libera o botão', async () => {
   expect(vibrarErro).toHaveBeenCalled();
 });
 
-test('a senha fica oculta', async () => {
+test('a senha fica oculta e o logo aparece', async () => {
   await render(<TelaLoginParceiro />);
+  expect(screen.getByRole('image', { name: 'Logo do Eco Ponto' })).toBeTruthy();
   expect(screen.getByLabelText('Senha').props.secureTextEntry).toBe(true);
 });
